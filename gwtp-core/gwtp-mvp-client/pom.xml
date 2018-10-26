@@ -5,8 +5,20 @@
     <parent>
         <groupId>com.gwtplatform</groupId>
         <artifactId>gwtp-core</artifactId>
-        <version>1.7-SNAPSHOT</version>
+<!-- MODIF FOUNDATION start -->
+<!-- 
+Checkstyle seems to be configured through a maven artifact: org.arcbees.checkstyle. I saw there different OFF/ON markers.
+
+For quicker deploy:
+mvn clean deploy -Dcheckstyle.skip -DskipTests
+ -->
+        <version>1.6</version>
+<!-- MODIF FOUNDATION end -->
     </parent>
+    
+<!-- MODIF FOUNDATION start -->
+    <version>1.6.foundation.0-SNAPSHOT</version>
+<!-- MODIF FOUNDATION end -->
 
     <artifactId>gwtp-mvp-client</artifactId>
     <name>GWTP MVP client</name>
@@ -122,4 +134,110 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+ <!-- MODIF FOUNDATION start -->
+    <dependencyManagement>
+        <dependencies>
+            <!-- Even if some dependencies are not required server-side, we do not use a provided scope because we often
+            need them included transitively. -->
+
+            <!-- Sub-modules -->
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>gwtp-crawler</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>gwtp-clients-common</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>gwtp-mvp-shared</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
+
+            <!-- Dispatch -->
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>gwtp-dispatch-rest-shared</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>gwtp-dispatch-rest</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>gwtp-dispatch-rpc-shared</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>gwtp-dispatch-common-client</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>gwtp-dispatch-common-shared</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>gwtp-dispatch-rpc-client</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>gwtp-dispatch-rpc-server</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>gwtp-dispatch-rpc-server-guice</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>gwtp-dispatch-rpc-server-spring</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>gwtp-dispatch-rpc-test</artifactId>
+                <version>${project.parent.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <!-- MVP -->
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>gwtp-mvp-client</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>gwtp-processors</artifactId>
+                <version>${project.parent.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>gwtp-tester</artifactId>
+                <version>${project.parent.version}</version>
+            </dependency>
+	    </dependencies>
+   	</dependencyManagement>
+  		<distributionManagement>
+		<repository>
+			<id>crispico-nexus</id>
+			<url>${crispico.nexus.repo.url}</url>
+		</repository>
+		<snapshotRepository>
+			<id>crispico-nexus</id>
+			<url>${crispico.nexus.snapshotRepo.url}</url>
+		</snapshotRepository>
+	</distributionManagement>
+<!-- MODIF FOUNDATION end -->
 </project>

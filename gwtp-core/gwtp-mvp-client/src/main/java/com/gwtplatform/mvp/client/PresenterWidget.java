@@ -136,7 +136,11 @@ public abstract class PresenterWidget<V extends View> extends HandlerContainerIm
     boolean visible;
 
     private final EventBus eventBus;
-    private final V view;
+// MODIF FOUNDATION start
+    // CHECKSTYLE_OFF
+    protected V view;
+    // CHECKSTYLE_ON
+// MODIF FOUNDATION end
     private final List<HandlerInformation<? extends EventHandler>>
             visibleHandlers = new ArrayList<HandlerInformation<? extends EventHandler>>();
     private final List<HandlerRegistration> visibleHandlerRegistrations = new ArrayList<HandlerRegistration>();
@@ -156,7 +160,9 @@ public abstract class PresenterWidget<V extends View> extends HandlerContainerIm
     public PresenterWidget(boolean autoBind, EventBus eventBus, V view) {
         super(autoBind);
 
-        assert view != null : "presenter view cannot be null";
+// MODIF FOUNDATION start
+//        assert view != null : "presenter view cannot be null";
+// MODIF FOUNDATION end
         this.eventBus = eventBus;
         this.view = view;
     }
