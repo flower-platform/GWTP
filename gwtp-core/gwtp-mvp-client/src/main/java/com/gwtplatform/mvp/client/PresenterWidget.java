@@ -180,6 +180,19 @@ public abstract class PresenterWidget<V extends View> extends HandlerContainerIm
         this(true, eventBus, view);
     }
 
+// MODIF FOUNDATION start
+    // CHECKSTYLE_OFF
+	@SuppressWarnings("unchecked")
+	public <P extends PresenterWidget<?>> P getParent() {
+		return (P) this.parent;
+	}
+
+	public void setParent(PresenterWidget<?> parent) {
+		this.parent = parent;
+	}
+	// CHECKSTYLE_ON
+// MODIF FOUNDATION end
+
     @Override
     public void addToPopupSlot(PresenterWidget<? extends PopupView> child) {
         addToSlot(POPUP_SLOT, child);
@@ -763,7 +776,10 @@ public abstract class PresenterWidget<V extends View> extends HandlerContainerIm
                 }
                 child.parent.children.remove(child);
             }
-            child.parent = this;
+// MODIF FOUNDATION start
+            // child.parent = this;
+            child.setParent(this);
+// MODIF FOUNDATION end
             children.add(child);
         }
         child.slot = slot;
@@ -805,7 +821,10 @@ public abstract class PresenterWidget<V extends View> extends HandlerContainerIm
             internalHide();
 
             parent.children.remove(this);
-            parent = null;
+// MODIF FOUNDATION start
+            // parent = null;
+            setParent(null);
+// MODIF FOUNDATION end
         }
         slot = null;
     }
