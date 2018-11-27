@@ -147,9 +147,11 @@ public abstract class Presenter<V extends View, Proxy_ extends Proxy<?>> extends
     /**
      * The light-weight {@link Proxy} around this presenter.
      */
-    private final Proxy_ proxy;
-    private RevealType revealType;
-    private GwtEvent.Type<RevealContentHandler<?>> slot;
+// MODIF FOUNDATION start
+    protected Proxy_ proxy;
+    protected RevealType revealType;
+    protected GwtEvent.Type<RevealContentHandler<?>> slot;
+// MODIF FOUNDATION end
 
     /**
      * Creates a {@link Presenter} that is not necessarily using automatic

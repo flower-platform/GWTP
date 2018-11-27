@@ -17,7 +17,7 @@ mvn clean deploy -Dcheckstyle.skip -DskipTests
     </parent>
     
 <!-- MODIF FOUNDATION start -->
-    <version>1.6.foundation.1-SNAPSHOT</version>
+    <version>1.6.foundation.2-SNAPSHOT</version>
 <!-- MODIF FOUNDATION end -->
 
     <artifactId>gwtp-mvp-client</artifactId>
